@@ -61,15 +61,17 @@ const toggleFollow = async (user) => {
       headers: { Authorization: `Bearer ${token}` }
     })
 
-    if (isFollowing(user)) {
-      currentUser.value.following = currentUser.value.following.filter(id => id.toString() !== user._id.toString())
-      user.followers = user.followers.filter(id => id.toString() !== currentUser.value._id.toString())
-    } else {
-      if (!currentUser.value.following) currentUser.value.following = []
-      if (!user.followers) user.followers = []
+    // refetch lại user hiện tại
+    const updatedUser = await axios.get('/auth/me', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    currentUser.value = updatedUser.data
 
-      currentUser.value.following.push(user._id)
+    // cập nhật followers của user kia
+    if (isFollowing(user)) {
       user.followers.push(currentUser.value._id)
+    } else {
+      user.followers = user.followers.filter(id => id !== currentUser.value._id)
     }
 
     console.log(res.data.message)

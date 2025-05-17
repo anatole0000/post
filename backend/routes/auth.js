@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = express.Router();
-
+const { authenticate } = require('../middleware/auth');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 
@@ -46,5 +46,13 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/me', authenticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id, '-password')
+    res.json(user)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
 
 module.exports = router;

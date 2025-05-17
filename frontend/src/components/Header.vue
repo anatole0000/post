@@ -9,6 +9,7 @@
       
       <!-- Link quản lý bài viết chỉ dành cho admin -->
       <RouterLink v-if="isAdmin" to="/admin/posts" class="nav-link">Quản lý bài viết</RouterLink>
+      <RouterLink v-if="isAdmin" to="/admin/users" class="nav-link">Quản lý người dùng</RouterLink>
       
       <RouterLink v-if="!isLoggedIn" to="/login" class="nav-link">Đăng nhập</RouterLink>
       <RouterLink v-if="!isLoggedIn" to="/register" class="nav-link">Đăng ký</RouterLink>

@@ -3,7 +3,7 @@
 A full-featured backend for a forum application, built with **Node.js**, **Express**, and **MongoDB**. Includes:
 
 - ✅ User authentication with JWT
-- ✅ Role-based access control (user, admin, moderator, editor)
+- ✅ Role-based access control with admin able to promote users (roles: user, admin, moderator, editor)
 - ✅ Post creation, update, delete, search
 - ✅ Comment system
 - ✅ Like/Unlike posts

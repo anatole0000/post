@@ -13,6 +13,8 @@ import PostComments from '../views/posts/PostCommentSection.vue'
 import ChatPage from '../pages/ChatPage.vue'
 import AdminPostManager from '../admin/AdminPostManager.vue'
 import UserList from '../user/UserList.vue'
+import UserDetail from '../admin/UserDetail.vue'
+import UserAdminPanel from '../admin/UserAdminPanel.vue'
 
 const routes = [
   { path: '/login', component: Login },
@@ -28,6 +30,8 @@ const routes = [
   { path: '/chat', name: 'ChatPage', component: ChatPage },
   { path: '/admin/posts', name: 'AdminPostManager', component: AdminPostManager, meta: { requiresAdmin: true } },
   { path: '/users', name: 'UserList', component: UserList },
+  { path: '/admin/users/:id', name: 'UserDetail', component: UserDetail, meta: { requiresAdmin: true } },
+  { path: '/admin/users', name: 'UserAdminPanel', component: UserAdminPanel, meta: { requiresAdmin: true } },
 ]
 
 const router = createRouter({
